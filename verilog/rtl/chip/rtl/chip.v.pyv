@@ -22,7 +22,7 @@
 
 `ifndef USE_TEST_TOP // useless for older TOPs
 
-`include "define.tmp.h"
+`include "define.h"
 `include "piton_system.vh"
 `include "jtag.vh"
 

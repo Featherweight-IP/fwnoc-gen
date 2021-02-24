@@ -119,7 +119,7 @@ begin
    if (!rst_n)
    begin
       <%
-         for i in range (numset):
+         for i in range (int(numset)):
             for j in range (numway):
                print("regfile[%d][`L15_WMT_ENTRY_%d_VALID_MASK] <= 1'b0;" % (i,j))
       %>

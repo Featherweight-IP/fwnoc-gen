@@ -38,8 +38,8 @@
 //==================================================================================================
 
 //`timescale 1 ns / 10 ps
-`include "l15.tmp.h"
-`include "define.tmp.h"
+`include "l15.h"
+`include "define.h"
 `include "dmbr_define.v"
 <%
 DMBR_BIN_NUM = 10

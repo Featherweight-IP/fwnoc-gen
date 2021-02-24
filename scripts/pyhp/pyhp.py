@@ -163,12 +163,14 @@ class PyHPInterp(code.InteractiveInterpreter):
             line = line[wslen:]
             codeobj += line + "\n"
         # codeobj = "".join(lines)
+        sys.stderr.write("--> Processing code segment " + str(lineCnt) + ' in pyv file ' + filename + "\n")
         try:
             c = code.compile_command(codeobj, '<string>', 'exec')
             self.runcode(c)
-
         except Exception as err:
+            sys.stderr.write(type(err), str(err) + " in code segment starting on line " + str(lineCnt) + ' in pyv file ' + filename)
             raise Exception(type(err), str(err) + " in code segment starting on line " + str(lineCnt) + ' in pyv file ' + filename)
+        sys.stderr.write("<-- Processing code segment " + str(lineCnt) + ' in pyv file ' + filename + "\n")
 
     def pushvar(self, var):
         cmd = 'sys.stdout.write(str(%s))' % var
@@ -185,7 +187,11 @@ def process(inpath, outpath):
     sys.stdout = sys.__stdout__ = pyhp._body
 
     # parse code
-    pyhp.include(inpath)
+    try:
+        pyhp.include(inpath)
+    except Exception as e:
+        print("Caught exception: " + str(e))
+            
 
     # write out data
     sys.stdout = sys.__stdout__ = so

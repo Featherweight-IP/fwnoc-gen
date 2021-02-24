@@ -19,31 +19,31 @@
 // Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.
 //
 // ========== Copyright Header End ============================================
-`include "define.tmp.h"
+`include "define.h"
 `include "dmbr_define.v"
-`include "l15.tmp.h"
+`include "l15.h"
 `include "jtag.vh"
 <%
 DMBR_BIN_NUM = 10
 from pyhp import pyhplib
-from riscvlib import *
+# from riscvlib import *
 import os
 from pyhp.pyhplib import *
-import riscvlib
+# import riscvlib
 import time
 
 if PITON_ARIANE:
 # TODO: We're not using Ariane
-#  devices = pyhplib.ReadDevicesXMLFile()
+  devices = pyhplib.ReadDevicesXMLFile()
 
-#  # just use a default frequency for device tree generation if not defined
-#  sysFreq = 50000000
-#  if 'CONFIG_SYS_FREQ' in os.environ:
-#    sysFreq = int(os.environ['CONFIG_SYS_FREQ'])
-#
-#  timeStamp = time.strftime("%b %d %Y %H:%M:%S", time.localtime())
-#  gen_riscv_dts(devices, X_TILES*Y_TILES, sysFreq, sysFreq/128, sysFreq, os.environ['ARIANE_ROOT']+"/openpiton/bootrom/", timeStamp)
-#  get_bootrom_info(devices, X_TILES*Y_TILES, sysFreq, sysFreq/128, sysFreq, os.environ['ARIANE_ROOT']+"/openpiton/bootrom/", timeStamp)
+  # just use a default frequency for device tree generation if not defined
+  sysFreq = 50000000
+  if 'CONFIG_SYS_FREQ' in os.environ:
+    sysFreq = int(os.environ['CONFIG_SYS_FREQ'])
+
+  timeStamp = time.strftime("%b %d %Y %H:%M:%S", time.localtime())
+  gen_riscv_dts(devices, X_TILES*Y_TILES, sysFreq, sysFreq/128, sysFreq, os.environ['ARIANE_ROOT']+"/openpiton/bootrom/", timeStamp)
+  get_bootrom_info(devices, X_TILES*Y_TILES, sysFreq, sysFreq/128, sysFreq, os.environ['ARIANE_ROOT']+"/openpiton/bootrom/", timeStamp)
 %>
 
 module tile #(
@@ -917,7 +917,7 @@ if (TILE_TYPE == `ARIANE_RV64_TILE) begin : g_ariane_core
     wire [`L15_RTRN_WIDTH-1:0] l15_rtrn;
 
     // see serpent_cache_pkg.sv for definition of the packed struct type "l15_rtrn_t",
-    // note that the constants defined in l15.tmp.h and serpent_cache_pkg.sv need to coincide!
+    // note that the constants defined in l15.h and serpent_cache_pkg.sv need to coincide!
     assign l15_rtrn = { l15_transducer_ack,
                         l15_transducer_header_ack,
                         l15_transducer_val,
@@ -945,7 +945,7 @@ if (TILE_TYPE == `ARIANE_RV64_TILE) begin : g_ariane_core
 
     wire [2:0] transducer_l15_size_pcx_standard;
     // see serpent_cache_pkg.sv for definition of the packed struct type "l15_req_t",
-    // note that the constants defined in l15.tmp.h and serpent_cache_pkg.sv need to coincide!
+    // note that the constants defined in l15.h and serpent_cache_pkg.sv need to coincide!
     assign { transducer_l15_val,
              transducer_l15_req_ack,
              transducer_l15_rqtype,

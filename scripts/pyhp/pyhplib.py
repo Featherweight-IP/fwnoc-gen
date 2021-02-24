@@ -139,7 +139,8 @@ fileName = "devices.xml"
 #                                     os.getenv("PROTOSYN_RUNTIME_BOARD", ""),
 #                                     fileName)
 # 
-# print("// " + DEVICES_XML_FILENAME)
+DEVICES_XML_FILENAME = os.path.join(os.getcwd(), fileName)
+print("// " + DEVICES_XML_FILENAME)
 
 def Replicate(text):
     newtext = ''

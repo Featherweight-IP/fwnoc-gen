@@ -104,8 +104,7 @@ assign DOUT          = ren_r ? up_to_date_data : DOUT_r;
   print("generate begin: bram_generate")
   bram_names = BRAM_CONFIG.keys()
 
-  for i in range(len(bram_names)):
-    name = bram_names[i]
+  for i,name in enumerate(bram_names):
     (depth, width) = (BRAM_CONFIG[name].depth, BRAM_CONFIG[name].width)
 
     if i == 0:

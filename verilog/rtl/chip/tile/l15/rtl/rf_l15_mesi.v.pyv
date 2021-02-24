@@ -112,7 +112,7 @@ begin
    if (!rst_n)
    begin
       <%
-         for i in range (numset):
+         for i in range (int(numset)):
             print("regfile[%d] <= 8'b0;" % (i))
       %>
       // regfile <= 1024'b0;

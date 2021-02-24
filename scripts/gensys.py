@@ -7,6 +7,7 @@ Created on Feb 18, 2021
 import argparse
 import sys
 import os
+import shutil
 
 # Add a path that can locate the pyhp directory
 scripts_dir = os.path.dirname(os.path.abspath(__file__))
@@ -37,8 +38,9 @@ def process_dir(src_path, dst_path):
             dstfile = os.path.join(dst_path, d)
             ext = os.path.splitext(srcfile)[1]
             
-            if ext == ".v" or ext == ".h":
+            if ext == ".v" or ext == ".h" or ext == ".vh":
                 print("TODO: copy " + srcfile)
+                shutil.copy(srcfile, dstfile)
             elif ext == ".pyv":
                 dstfile = dstfile[:-4]
                 print(">>>: preprocess " + srcfile + " => " + dstfile)

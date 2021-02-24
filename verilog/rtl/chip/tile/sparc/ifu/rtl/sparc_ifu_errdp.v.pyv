@@ -34,8 +34,8 @@
 %>
 
 `include "sys.h"
-`include "lsu.tmp.h"
-`include "ifu.tmp.h"
+`include "lsu.h"
+`include "ifu.h"
 
 module sparc_ifu_errdp(/*AUTOARG*/
    // Outputs

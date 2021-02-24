@@ -28,12 +28,12 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //Function: This wires everything together to make a crossbar
 //
 
-`include "define.tmp.h"
+`include "define.h"
 <%
 import os
 import sys
-sys.path.append(os.environ["DV_ROOT"]+"/design/chipset/io_xbar/parameter")
-import io_xbar_node_define
+# sys.path.append(os.environ["DV_ROOT"]+"/design/chipset/io_xbar/parameter")
+from pyhp import io_xbar_node_define
 DYNAMIC_NODE_PORT = io_xbar_node_define.DYNAMIC_NODE_PORT
 DYNAMIC_NODE_PORT_LOG2 = io_xbar_node_define.DYNAMIC_NODE_PORT_LOG2
 DYNAMIC_NODE_PORT_P_3 = io_xbar_node_define.DYNAMIC_NODE_PORT_P_3
@@ -664,7 +664,7 @@ for a in range (DYNAMIC_NODE_PORT):
     s_1 = ".popped_interrupt_mesg_out(), .popped_memory_ack_mesg_out(), .popped_memory_ack_mesg_out_sender(), "
   # sequence for input output mapping
   map_list = []
-  for i in range (default_dir, default_dir + DYNAMIC_NODE_PORT):
+  for i in range (int(default_dir), int(default_dir + DYNAMIC_NODE_PORT)):
     if (i % DYNAMIC_NODE_PORT != a):
       map_list.append(i % DYNAMIC_NODE_PORT)
   map_list.append(a)

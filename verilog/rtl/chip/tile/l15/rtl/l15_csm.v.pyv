@@ -39,8 +39,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //==================================================================================================
 
 //`timescale 1 ns / 10 ps
-`include "l15.tmp.h"
-`include "define.tmp.h"
+`include "l15.h"
+`include "define.h"
 
 <%
    L15_CSM_NUM_TICKETS = 8

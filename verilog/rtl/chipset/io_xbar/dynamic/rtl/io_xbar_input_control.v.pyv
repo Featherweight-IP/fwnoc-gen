@@ -43,8 +43,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <%
 import os
 import sys
-sys.path.append(os.environ["DV_ROOT"]+"/design/chipset/io_xbar/parameter")
-import io_xbar_node_define
+# sys.path.append(os.environ["DV_ROOT"]+"/design/chipset/io_xbar/parameter")
+from pyhp import io_xbar_node_define
 DYNAMIC_NODE_PORT = io_xbar_node_define.DYNAMIC_NODE_PORT
 DYNAMIC_NODE_PORT_LOG2 = io_xbar_node_define.DYNAMIC_NODE_PORT_LOG2
 route_req_outs = ""

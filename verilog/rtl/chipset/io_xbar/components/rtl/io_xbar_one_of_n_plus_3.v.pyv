@@ -27,9 +27,9 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 <%
 import os
 import sys
-sys.path.append(os.environ["DV_ROOT"]+"/design/chipset/io_xbar/parameter")
+# sys.path.append(os.environ["DV_ROOT"]+"/design/chipset/io_xbar/parameter")
 
-import io_xbar_node_define
+from pyhp import io_xbar_node_define
 DYNAMIC_NODE_PORT_P_3 = io_xbar_node_define.DYNAMIC_NODE_PORT_P_3
 DYNAMIC_NODE_PORT_P_3_LOG2 = io_xbar_node_define.DYNAMIC_NODE_PORT_P_3_LOG2
 %>
