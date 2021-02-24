@@ -40,7 +40,7 @@
 //
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 
 module uart_boot_splitter (
     input   wire                            clk,

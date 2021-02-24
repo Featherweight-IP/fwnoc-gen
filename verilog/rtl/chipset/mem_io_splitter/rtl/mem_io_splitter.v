@@ -40,7 +40,7 @@
 //
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "chipset_define.vh"
 
 module mem_io_splitter(

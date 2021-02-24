@@ -40,7 +40,7 @@
 //
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 
 module iob_splitter (
     input   wire                            clk,

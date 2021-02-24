@@ -52,8 +52,8 @@ module flat_id_to_xy(
         end'''
         for i in range(NUM_TILES):
             tt = text.replace("ifield", str(i))
-            tt = tt.replace("xfield", str(i%X_TILES))
-            tt = tt.replace("yfield", str(i/X_TILES))
+            tt = tt.replace("xfield", str(int(i%X_TILES)))
+            tt = tt.replace("yfield", str(int(i/X_TILES)))
             print(tt)
         %>
         default:

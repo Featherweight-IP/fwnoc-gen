@@ -38,8 +38,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //==================================================================================================
 
-`include "l2.tmp.h"
-`include "define.tmp.h"
+`include "l2.h"
+`include "define.h"
 
 module l2_tag_wrap(
 

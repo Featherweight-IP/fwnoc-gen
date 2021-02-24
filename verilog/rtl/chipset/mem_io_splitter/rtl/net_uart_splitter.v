@@ -40,7 +40,7 @@
 //
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 
 module net_uart_splitter (
     input   wire                            clk,

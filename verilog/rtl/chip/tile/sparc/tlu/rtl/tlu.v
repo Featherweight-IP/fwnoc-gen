@@ -36,10 +36,10 @@
 `include	"sys.h" // system level definition file which contains the
 			// time scale definition
 
-`include        "lsu.tmp.h"
+`include        "lsu.h"
 `include        "tlu.h"
 
-`include        "define.tmp.h"
+`include        "define.h"
 ////////////////////////////////////////////////////////////////////////
 // Local header file includes / local defines
 ////////////////////////////////////////////////////////////////////////

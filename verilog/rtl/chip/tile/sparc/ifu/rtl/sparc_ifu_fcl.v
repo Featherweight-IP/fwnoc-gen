@@ -38,7 +38,7 @@
 // Global header file includes
 ////////////////////////////////////////////////////////////////////////
 
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 
 module sparc_ifu_fcl(/*AUTOARG*/

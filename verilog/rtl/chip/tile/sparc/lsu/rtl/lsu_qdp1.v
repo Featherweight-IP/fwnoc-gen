@@ -29,8 +29,8 @@
 `include  "sys.h" // system level definition file which contains the
           // time scale definition
 `include  "iop.h"
-`include  "lsu.tmp.h"
-`include "ifu.tmp.h"
+`include  "lsu.h"
+`include "ifu.h"
 
 ////////////////////////////////////////////////////////////////////////
 // Local header file includes / local defines

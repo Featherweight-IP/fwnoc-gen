@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //  Description   :
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "jtag.vh"
 
 `ifdef L15_EXTRA_DEBUG

@@ -50,7 +50,7 @@
 // Local header file includes / local defines
 ////////////////////////////////////////////////////////////////////////
 
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 
 `ifdef SIM_FPGA_SYN_SRAM_LSU_ICACHE // simulation flag

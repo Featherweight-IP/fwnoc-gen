@@ -38,7 +38,7 @@
 //                  TODO: parameterize the entry selection logic.
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "spi_master_defines.v"
 `include "sd_cache_defines.v"
 

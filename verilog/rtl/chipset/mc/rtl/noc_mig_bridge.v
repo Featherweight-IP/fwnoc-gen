@@ -26,7 +26,7 @@
 // ========== Copyright Header End ============================================
 
 `include "mc_define.h"
-`include "define.tmp.h"
+`include "define.h"
 `timescale 1ps/100fs
 
 //packet parser states
@@ -479,7 +479,7 @@ always @(posedge clk) begin
 end
 
 generate begin
-  genvar ii;
+//TODO:  genvar ii;
   for (ii = 0; ii < RATIO; ii = ii + 1) begin: APP_WDF
     assign wdf_data_part[ii] = app_wdf_data_reg[(ii+1)*MIG_APP_DATA_WIDTH - 1 : ii*MIG_APP_DATA_WIDTH];
     assign wdf_mask_part[ii] = app_wdf_mask_reg[(ii+1)*MIG_APP_MASK_WIDTH - 1 : ii*MIG_APP_MASK_WIDTH];
@@ -513,7 +513,7 @@ always @(posedge clk) begin
 end
 
 generate begin
-  genvar ii;
+//TODO:  genvar ii;
   for (ii = 0; ii < RATIO; ii = ii + 1) begin: APP_RD
     always @(posedge clk) begin
       app_rd_data_part[ii] <= rd_part == ii ? app_rd_data : app_rd_data_part[ii]; 

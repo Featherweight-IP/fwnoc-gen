@@ -28,7 +28,7 @@
 */
 ////////////////////////////////////////////////////////////////////////
 
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 module sparc_ifu_swl(/*AUTOARG*/
    // Outputs

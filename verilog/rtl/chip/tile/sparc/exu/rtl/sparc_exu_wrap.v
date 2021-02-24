@@ -25,8 +25,8 @@
 
 // Wraps the EXU to tie unused signals when no scan chain is present
 
-`include "define.tmp.h"
-`include "lsu.tmp.h"
+`include "define.h"
+`include "lsu.h"
 
 module sparc_exu_wrap
 (

@@ -21,7 +21,7 @@
 // ========== Copyright Header End ============================================
 `include "sys.h"
 `include "iop.h"
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 module cpx_spc_buf (/*AUTOARG*/
    // Outputs

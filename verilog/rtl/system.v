@@ -30,7 +30,7 @@
 //              with different chipsets and for FPGA synthesis for
 //              OpenPiton.
 
-`include "define.tmp.h"
+`include "define.h"
 `include "piton_system.vh"
 `ifdef PITONSYS_AXI4_MEM
 `include "noc_axi4_bridge_define.vh"

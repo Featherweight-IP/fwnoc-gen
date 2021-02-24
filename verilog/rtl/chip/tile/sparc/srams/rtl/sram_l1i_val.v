@@ -62,7 +62,7 @@
 // time scale definition
 
 //`include "iop.h"
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 ////////////////////////////////////////////////////////////////////////
 // Local header file includes / local defines

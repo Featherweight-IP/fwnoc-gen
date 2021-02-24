@@ -38,7 +38,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ////
 ////
 
-`include "define.tmp.h"
+`include "define.h"
 
 module dynamic_node_top_wrap
 (

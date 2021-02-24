@@ -37,7 +37,7 @@
 //                  The JTAG interface operates at test clock speed
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "jtag.vh"
 
 `ifdef L15_EXTRA_DEBUG

@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //                  Ring #1 is the
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "jtag.vh"
 
 `ifdef L15_EXTRA_DEBUG

@@ -24,7 +24,7 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 `include "chipset_define.vh"
-`include "define.tmp.h"
+`include "define.h"
 
 module test_end_checker(
     input clk,

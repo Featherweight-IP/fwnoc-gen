@@ -41,8 +41,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //==================================================================================================
 
 //`timescale 1 ns / 10 ps
-`include "l15.tmp.h"
-`include "lsu.tmp.h"
+`include "l15.h"
+`include "lsu.h"
 
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none

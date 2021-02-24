@@ -28,7 +28,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //Function: This wires everything together to make a crossbar
 //
 
-`include "define.tmp.h"
+`include "define.h"
 
 module dynamic_node_top(clk,
 		    reset_in,

@@ -23,7 +23,7 @@
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-`include "define.tmp.h"
+`include "define.h"
 
 // Filename: uart_pkttrace_dump.v
 // Author: mmckeown

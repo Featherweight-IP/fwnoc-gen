@@ -37,8 +37,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //
 //==================================================================================================
-`include "l15.tmp.h"
-`include "define.tmp.h"
+`include "l15.h"
+`include "define.h"
 
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none

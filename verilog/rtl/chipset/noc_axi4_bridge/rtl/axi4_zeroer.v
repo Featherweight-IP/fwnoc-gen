@@ -135,8 +135,8 @@ module axi4_zeroer (
     output reg                                m_axi_bready
 );
 
-localparam reg [63:0] BOARD_MEM_SIZE_MB = `BOARD_MEM_SIZE_MB;
-localparam reg [`AXI4_ADDR_WIDTH-1:0] MAX_MEM_ADDR      = (BOARD_MEM_SIZE_MB * 2**20);
+localparam [63:0] BOARD_MEM_SIZE_MB = `BOARD_MEM_SIZE_MB;
+localparam [`AXI4_ADDR_WIDTH-1:0] MAX_MEM_ADDR      = (BOARD_MEM_SIZE_MB * 2**20);
 localparam REQUESTS_NEEDED  = MAX_MEM_ADDR / `AXI4_STRB_WIDTH; // basically max addr divided by size of one request
 localparam MAX_OUTSTANDING = 16;
 

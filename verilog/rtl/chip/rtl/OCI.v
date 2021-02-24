@@ -31,7 +31,7 @@
 // You can instantiate yout IO cells, pads, and other off-chip interface in
 // this file.
 
-`include "define.tmp.h"
+`include "define.h"
 
 module OCI (
    // Outside

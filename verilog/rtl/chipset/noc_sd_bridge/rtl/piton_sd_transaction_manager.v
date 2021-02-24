@@ -37,7 +37,7 @@
 //                  SD controller IP core with a simple val/rdy interface.
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "sd_defines.h"
 `include "piton_sd_define.vh"
 

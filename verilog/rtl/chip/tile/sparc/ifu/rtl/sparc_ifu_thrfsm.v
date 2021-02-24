@@ -26,7 +26,7 @@
 //  The switch logithrfsm contains the thread state machine.  
 */
 
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 module sparc_ifu_thrfsm(/*AUTOARG*/
    // Outputs

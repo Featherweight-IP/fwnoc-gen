@@ -34,7 +34,7 @@
 // Local header file includes / local defines
 ////////////////////////////////////////////////////////////////////////
 `include "sys.h"
-`include "ifu.tmp.h"
+`include "ifu.h"
 
 `define NOP            32'h01000000
 `define PO_RESET_PC    48'hfffff0000020

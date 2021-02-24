@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 // This module wraps the L1.5 and ties unused signals
 
-`include "l15.tmp.h"
+`include "l15.h"
 
 module l15_wrap (
     input                                   clk,

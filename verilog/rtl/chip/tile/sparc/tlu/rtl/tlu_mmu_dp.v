@@ -36,7 +36,7 @@
 `include "tlu.h"
 
 `ifndef NO_RTL_CSM
-`include "define.tmp.h"
+`include "define.h"
 `endif
 //PITON_PROTO enables all FPGA related modifications
 `ifdef PITON_PROTO 

@@ -195,7 +195,7 @@ def MakeGenericCacheDefine(modulename, type, height_define, heightlog2_define, w
 
 def Get1RWTemplate():
   return '''
-`include "define.tmp.h"
+`include "define.h"
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none
 `endif
@@ -247,7 +247,7 @@ endmodule
 
 def Get1RWHeader():
   return '''
-`include "define.tmp.h"
+`include "define.h"
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none
 `endif
@@ -303,7 +303,7 @@ end
 
 def Get2RWTemplate():
   return '''
-`include "define.tmp.h"
+`include "define.h"
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none
 `endif
@@ -379,7 +379,7 @@ endmodule
 
 def Get2RWHeader():
   return '''
-`include "define.tmp.h"
+`include "define.h"
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none
 `endif
@@ -449,7 +449,7 @@ end
 
 def Get1R1WHeader():
   return '''
-`include "define.tmp.h"
+`include "define.h"
 `ifdef DEFAULT_NETTYPE_NONE
 `default_nettype none
 `endif

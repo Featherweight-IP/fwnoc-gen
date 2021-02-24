@@ -44,6 +44,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // trin timing fix 12/16: move read s3 to s2
 // timing 12/17: move write to s2 to s3
 
+`include "lsu.h"
+
 <%
   from pyhp import pyhplib
   from pyhp.pyhplib import *

@@ -38,7 +38,7 @@
 //                  requests.
 //==================================================================================================
 
-`include "define.tmp.h"
+`include "define.h"
 `define C_M_AXI_LITE_DATA_WIDTH  `NOC_DATA_WIDTH
 `define C_M_AXI_LITE_ADDR_WIDTH  `NOC_DATA_WIDTH
 `define C_M_AXI_LITE_RESP_WIDTH  2

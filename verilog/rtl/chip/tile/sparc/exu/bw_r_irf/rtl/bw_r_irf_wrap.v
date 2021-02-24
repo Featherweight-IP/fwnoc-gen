@@ -25,7 +25,7 @@
 
 // Wraps the EXU to tie unused signals when no scan chain is present                                              
 
-`include "define.tmp.h"
+`include "define.h"
 
 module bw_r_irf_wrap
 (

@@ -58,12 +58,15 @@ module l2_data_pgen (
 //generate parity bits based on the hamming codes
 <%
 import math
+import sys
 dcount = [0] * L2_DATA_ECC_DATA_WIDTH
 for i in range(L2_DATA_ECC_PARITY_WIDTH-1):
     print("assign parity[%d] = " %(i)),
     flag = 0
+    sys.stderr.write("VAL: L2_DATA_ECC_TOTAL_WIDTH=" + str(L2_DATA_ECC_TOTAL_WIDTH))
     for j in range(1,L2_DATA_ECC_TOTAL_WIDTH):
-        if ((j != 2**i) and ((j/(2**i))%2 == 1)):
+        sys.stderr.write("VAL: " + str((j/(2**i))%2) + "\n")
+        if ((j != 2**i) and (int((j/(2**i))%2) == 1)):
             if flag == 1:
                 print("^"),
             else:

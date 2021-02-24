@@ -26,7 +26,7 @@
 // ========== Copyright Header End ============================================
 
 `include "mc_define.h"
-`include "define.tmp.h"
+`include "define.h"
 `include "noc_axi4_bridge_define.vh"
 
 module noc_axi4_bridge (

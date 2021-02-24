@@ -31,10 +31,10 @@
 ////////////////////////////////////////////////////////////////////////
 `include "sys.h"
 `include "iop.h"
-`include "ifu.tmp.h"
-`include "lsu.tmp.h"
+`include "ifu.h"
+`include "lsu.h"
 
-`include "define.tmp.h"
+`include "define.h"
 
 ////////////////////////////////////////////////////////////////////////
 // Local header file includes / local defines

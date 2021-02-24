@@ -27,8 +27,8 @@
 
 `include    "sys.h"
 `include    "tlu.h"
-`include    "define.tmp.h"
-`include    "lsu.tmp.h"
+`include    "define.h"
+`include    "lsu.h"
 
 module tlu_nospu_wrap
 (

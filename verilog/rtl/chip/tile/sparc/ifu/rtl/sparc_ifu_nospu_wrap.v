@@ -27,9 +27,9 @@
 
 `include "sys.h"
 `include "iop.h"
-`include "ifu.tmp.h"
-`include "lsu.tmp.h"
-`include "define.tmp.h"
+`include "ifu.h"
+`include "lsu.h"
+`include "define.h"
 
 module sparc_ifu_nospu_wrap 
 (

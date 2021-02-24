@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //top level module for fpga->chip communication tests
 
-`include "define.tmp.h"
+`include "define.h"
 
 module fpga_bridge(
     // Clocks and resets

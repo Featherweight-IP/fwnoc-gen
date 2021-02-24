@@ -22,7 +22,7 @@
 /////////////////////////////////////////////////////////////////
 
 `include "sys.h"
-`include "lsu.tmp.h"
+`include "lsu.h"
 
 module lsu_excpctl ( /*AUTOARG*/
    // Outputs

@@ -21,10 +21,10 @@
 // ========== Copyright Header End ============================================
 `include "sys.h"
 `include "iop.h"
-`include "ifu.tmp.h"
+`include "ifu.h"
 `include "tlu.h"
-`include "lsu.tmp.h"
-`include "define.tmp.h"
+`include "lsu.h"
+`include "define.h"
 `ifdef PITON_PROTO
 `ifdef PITONSYS_UART_BOOT
    `include "uart16550_define.vh"

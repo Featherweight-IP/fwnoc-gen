@@ -25,7 +25,7 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 // ========== Copyright Header End ============================================
 
-`include "define.tmp.h"
+`include "define.h"
 `include "mc_define.h"
 `include "noc_axi4_bridge_define.vh"
 

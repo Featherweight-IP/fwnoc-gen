@@ -26,7 +26,7 @@
 
 // `include "sys.h"
 `include "iop.h"
-`include "define.tmp.h"
+`include "define.h"
 
 `ifdef L15_EXTRA_DEBUG
 `default_nettype none

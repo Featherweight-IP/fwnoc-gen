@@ -38,7 +38,7 @@ def process_dir(src_path, dst_path):
             dstfile = os.path.join(dst_path, d)
             ext = os.path.splitext(srcfile)[1]
             
-            if ext == ".v" or ext == ".h" or ext == ".vh":
+            if ext == ".v" or ext == ".h" or ext == ".vh" or ext == ".mk":
                 print("TODO: copy " + srcfile)
                 shutil.copy(srcfile, dstfile)
             elif ext == ".pyv":

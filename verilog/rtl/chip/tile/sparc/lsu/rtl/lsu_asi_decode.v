@@ -30,7 +30,7 @@
                                         // time scale definition
 
 `ifndef NO_RTL_CSM
-`include "define.tmp.h"
+`include "define.h"
 `endif
 
 ////////////////////////////////////////////////////////////////////////

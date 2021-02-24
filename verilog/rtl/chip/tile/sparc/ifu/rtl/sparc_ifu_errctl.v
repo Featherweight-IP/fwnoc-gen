@@ -27,7 +27,7 @@
 // Global header file includes
 ////////////////////////////////////////////////////////////////////////
 
-`include "lsu.tmp.h"
+`include "lsu.h"
 
 module sparc_ifu_errctl(/*AUTOARG*/
    // Outputs

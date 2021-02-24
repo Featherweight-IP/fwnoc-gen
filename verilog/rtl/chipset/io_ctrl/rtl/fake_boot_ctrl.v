@@ -36,8 +36,8 @@
 //
 //==================================================================================================
 
-`include "l2.tmp.h"
-`include "define.tmp.h"
+`include "l2.h"
+`include "define.h"
 `include "iop.h"
 `include "chipset_define.vh"
 
