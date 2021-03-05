@@ -29,6 +29,7 @@ import math
 import sys
 from pyhp import pyhplib 
 
+sys.stderr.write("X_TILES=" + str(pyhplib.X_TILES) + "\n")
 DYNAMIC_NODE_PORT = pyhplib.X_TILES + 1
 DYNAMIC_NODE_PORT_LOG2 = int(math.ceil(math.log(DYNAMIC_NODE_PORT, 2)))
 DYNAMIC_NODE_PORT_P_3 = DYNAMIC_NODE_PORT + 3

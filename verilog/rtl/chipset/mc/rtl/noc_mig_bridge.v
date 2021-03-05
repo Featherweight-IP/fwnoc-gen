@@ -479,10 +479,10 @@ always @(posedge clk) begin
 end
 
 generate begin
-//TODO:  genvar ii;
-  for (ii = 0; ii < RATIO; ii = ii + 1) begin: APP_WDF
-    assign wdf_data_part[ii] = app_wdf_data_reg[(ii+1)*MIG_APP_DATA_WIDTH - 1 : ii*MIG_APP_DATA_WIDTH];
-    assign wdf_mask_part[ii] = app_wdf_mask_reg[(ii+1)*MIG_APP_MASK_WIDTH - 1 : ii*MIG_APP_MASK_WIDTH];
+  genvar ii_1;
+  for (ii_1 = 0; ii_1 < RATIO; ii_1 = ii_1 + 1) begin: APP_WDF
+    assign wdf_data_part[ii_1] = app_wdf_data_reg[(ii_1+1)*MIG_APP_DATA_WIDTH - 1 : ii_1*MIG_APP_DATA_WIDTH];
+    assign wdf_mask_part[ii_1] = app_wdf_mask_reg[(ii_1+1)*MIG_APP_MASK_WIDTH - 1 : ii_1*MIG_APP_MASK_WIDTH];
   end
 end
 endgenerate
@@ -513,16 +513,16 @@ always @(posedge clk) begin
 end
 
 generate begin
-//TODO:  genvar ii;
-  for (ii = 0; ii < RATIO; ii = ii + 1) begin: APP_RD
+  genvar ii_2;
+  for (ii_2 = 0; ii_2 < RATIO; ii_2 = ii_2 + 1) begin: APP_RD
     always @(posedge clk) begin
-      app_rd_data_part[ii] <= rd_part == ii ? app_rd_data : app_rd_data_part[ii]; 
+      app_rd_data_part[ii_2] <= rd_part == ii_2 ? app_rd_data : app_rd_data_part[ii_2]; 
     end
 
-    if (ii == (RATIO-1)) // bypass last part
-      assign app_rd_data_trans[(ii+1)*MIG_APP_DATA_WIDTH-1 : ii*MIG_APP_DATA_WIDTH] = app_rd_data;
+    if (ii_2 == (RATIO-1)) // bypass last part
+      assign app_rd_data_trans[(ii_2+1)*MIG_APP_DATA_WIDTH-1 : ii_2*MIG_APP_DATA_WIDTH] = app_rd_data;
     else
-      assign app_rd_data_trans[(ii+1)*MIG_APP_DATA_WIDTH-1 : ii*MIG_APP_DATA_WIDTH] = app_rd_data_part[ii];
+      assign app_rd_data_trans[(ii_2+1)*MIG_APP_DATA_WIDTH-1 : ii_2*MIG_APP_DATA_WIDTH] = app_rd_data_part[ii_2];
   end
 end
 endgenerate

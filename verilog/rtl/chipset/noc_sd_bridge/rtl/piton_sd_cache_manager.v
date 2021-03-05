@@ -158,6 +158,9 @@ module piton_sd_cache_manager (
         :   (cache_tm_addr_sd_sel   ==  2'h1)   ?   wb_addr
         :   (cache_tm_addr_sd_sel   ==  2'h2)   ?   flush_addr
         :                                           0;
+   
+    // Moved from ~377 
+    wire    [`CACHE_BLOCK_PLACEMENT_BITS]   addr_query_indexed  [`CACHE_INDEXES-1:0];
 
     // ------ Sequential Logic ------ //
     always @(posedge clk or posedge rst) begin
@@ -374,7 +377,6 @@ module piton_sd_cache_manager (
     reg     [`CACHE_ENTRY_INDEXED_BITS]     entry_lkp_indexed_f [`CACHE_INDEXES-1:0];
 
     wire    [`CACHE_INDEXES-1:0]            dirty_query_indexed;
-    wire    [`CACHE_BLOCK_PLACEMENT_BITS]   addr_query_indexed  [`CACHE_INDEXES-1:0];
 
     wire    [`CACHE_ENTRY_BITS]     update_entry
         =   cache_update_sel ?   cache_entry_query_f :   cache_entry_lkp_f;

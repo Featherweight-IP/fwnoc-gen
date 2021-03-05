@@ -26,7 +26,7 @@ import code
 import re
 import sys
 
-import pyhp.pyhplib
+#import pyhp.pyhplib
 
 
 __version__ = "$Id: pyhp.py,v 1.12 2000/11/10 17:26:33 ccraig Exp $"
@@ -163,18 +163,22 @@ class PyHPInterp(code.InteractiveInterpreter):
             line = line[wslen:]
             codeobj += line + "\n"
         # codeobj = "".join(lines)
-        sys.stderr.write("--> Processing code segment " + str(lineCnt) + ' in pyv file ' + filename + "\n")
+#        sys.stderr.write("--> Processing code segment " + str(lineCnt) + ' in pyv file ' + filename + "\n")
         try:
             c = code.compile_command(codeobj, '<string>', 'exec')
             self.runcode(c)
         except Exception as err:
             sys.stderr.write(type(err), str(err) + " in code segment starting on line " + str(lineCnt) + ' in pyv file ' + filename)
             raise Exception(type(err), str(err) + " in code segment starting on line " + str(lineCnt) + ' in pyv file ' + filename)
-        sys.stderr.write("<-- Processing code segment " + str(lineCnt) + ' in pyv file ' + filename + "\n")
+#        sys.stderr.write("<-- Processing code segment " + str(lineCnt) + ' in pyv file ' + filename + "\n")
 
     def pushvar(self, var):
         cmd = 'sys.stdout.write(str(%s))' % var
-        self.runsource(cmd)
+#        sys.stderr.write("PushVar: write \"" + str(var) + "\"\n")
+        try:
+            self.runsource(cmd)
+        except Exception as e:
+            sys.stderr.write("PushVar Error\n")
 
     def pushtext(self, text):
         self.locals['sys'].stdout.write(text)

@@ -23,40 +23,53 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import os
 import math
+import os
+import sys
+
 import xml.etree.ElementTree as ET
+
+from .pyhplib_sram import *
+from pyhp.config import Config, DeviceConfig
+
 
 #MAX_THREAD = 128;
 MAX_TILE = 64;
 MAX_X = 8;
 MAX_Y = 8;
 
-X_TILES = int(os.environ.get('PTON_X_TILES', '-1'))
-#print "//x_tiles:", num_tiles
+cfg : Config = Config.active()
 
-Y_TILES = int(os.environ.get('PTON_Y_TILES', '-1'))
-#print "//y_tiles:", num_tiles
+X_TILES = cfg.tiles.x
+Y_TILES = cfg.tiles.y
+NUM_TILES = cfg.tiles.num
+NETWORK_CONFIG = "2dmesh_config"
 
-NUM_TILES = int(os.environ.get('PTON_NUM_TILES', '-1'))
-#print "//num_tiles:", num_tiles
-
-NETWORK_CONFIG = (os.environ.get("PTON_NETWORK_CONFIG", "2dmesh_config"))
-
-if X_TILES == -1:
-    print("//x_tiles not defined!")
-    X_TILES = MAX_X
-
-if Y_TILES == -1:
-    print("//y_tiles not defined!")
-    Y_TILES = MAX_Y
-
-if NUM_TILES == -1:
-    print("//num_tile not defined!")
-    if X_TILES != -1 and Y_TILES != -1:
-        NUM_TILES = X_TILES*Y_TILES
-    else:
-        NUM_TILES = MAX_TILE
+# X_TILES = int(os.environ.get('PTON_X_TILES', '-1'))
+# #print "//x_tiles:", num_tiles
+# 
+# Y_TILES = int(os.environ.get('PTON_Y_TILES', '-1'))
+# #print "//y_tiles:", num_tiles
+# 
+# NUM_TILES = int(os.environ.get('PTON_NUM_TILES', '-1'))
+# #print "//num_tiles:", num_tiles
+# 
+# NETWORK_CONFIG = (os.environ.get("PTON_NETWORK_CONFIG", "2dmesh_config"))
+# 
+# if X_TILES == -1:
+#     print("//x_tiles not defined!")
+#     X_TILES = MAX_X
+# 
+# if Y_TILES == -1:
+#     print("//y_tiles not defined!")
+#     Y_TILES = MAX_Y
+# 
+# if NUM_TILES == -1:
+#     print("//num_tile not defined!")
+#     if X_TILES != -1 and Y_TILES != -1:
+#         NUM_TILES = X_TILES*Y_TILES
+#     else:
+#         NUM_TILES = MAX_TILE
 
 PITON_ARIANE   = int(os.environ.get('PITON_ARIANE', '0'))
 PITON_PICO     = int(os.environ.get('PITON_PICO', '0'))
@@ -67,19 +80,28 @@ if PITON_ARIANE or PITON_PICO:
 else:
     NUM_THREADS = 2 * NUM_TILES
 
+CONFIG_L15_SIZE = cfg.l15.size
+CONFIG_L15_ASSOCIATIVITY = cfg.l15.associativity
+CONFIG_L1D_SIZE = cfg.l15.size
+CONFIG_L1D_ASSOCIATIVITY = cfg.l15.associativity
+CONFIG_L1I_SIZE = cfg.l15.size
+CONFIG_L1I_ASSOCIATIVITY = cfg.l15.associativity
+CONFIG_L2_SIZE = cfg.l2.size
+CONFIG_L2_ASSOCIATIVITY = cfg.l2.associativity
+
 # cache configurations
-CONFIG_L15_SIZE = int(os.environ.get('CONFIG_L15_SIZE', '8192'))
-CONFIG_L15_ASSOCIATIVITY = int(os.environ.get('CONFIG_L15_ASSOCIATIVITY', '4'))
-CONFIG_L1D_SIZE = int(os.environ.get('CONFIG_L1D_SIZE', '8192'))
-CONFIG_L1D_ASSOCIATIVITY = int(os.environ.get('CONFIG_L1D_ASSOCIATIVITY', '4'))
-CONFIG_L1I_SIZE = int(os.environ.get('CONFIG_L1I_SIZE', '16384'))
-CONFIG_L1I_ASSOCIATIVITY = int(os.environ.get('CONFIG_L1I_ASSOCIATIVITY', '4'))
-CONFIG_L2_SIZE = int(os.environ.get('CONFIG_L2_SIZE', '65536'))
+# CONFIG_L15_SIZE = int(os.environ.get('CONFIG_L15_SIZE', '8192'))
+# CONFIG_L15_ASSOCIATIVITY = int(os.environ.get('CONFIG_L15_ASSOCIATIVITY', '4'))
+#CONFIG_L1D_SIZE = int(os.environ.get('CONFIG_L1D_SIZE', '8192'))
+#CONFIG_L1D_ASSOCIATIVITY = int(os.environ.get('CONFIG_L1D_ASSOCIATIVITY', '4'))
+#CONFIG_L1I_SIZE = int(os.environ.get('CONFIG_L1I_SIZE', '16384'))
+#CONFIG_L1I_ASSOCIATIVITY = int(os.environ.get('CONFIG_L1I_ASSOCIATIVITY', '4'))
+#CONFIG_L2_SIZE = int(os.environ.get('CONFIG_L2_SIZE', '65536'))
 # CONFIG_L2_SIZE = 65536*2 # test, make L2 128KB
 # CONFIG_L2_SIZE = 65536*4 # test, make L2 512KB
 # CONFIG_L2_SIZE = 65536*8 # test, make L2 512KB
 # CONFIG_L2_SIZE = 65536*16 # test, make L2 1MB
-CONFIG_L2_ASSOCIATIVITY = int(os.environ.get('CONFIG_L2_ASSOCIATIVITY', '4'))
+# CONFIG_L2_ASSOCIATIVITY = int(os.environ.get('CONFIG_L2_ASSOCIATIVITY', '4'))
 # CONFIG_L2_ASSOCIATIVITY = 8
 # constants, not configurable
 L15_LINE_SIZE = 16
@@ -125,7 +147,6 @@ BRAM_CONFIG["bram_boot"]  = BramCfg(256, 512)
 # CONFIG_SRAM_L2_DIR_HEIGHT = int(os.environ.get('CONFIG_SRAM_L2_DIR_HEIGHT', '1024'))
 # CONFIG_SRAM_L2_DIR_WIDTH = int(os.environ.get('CONFIG_SRAM_L2_DIR_WIDTH', '64'))
 
-from .pyhplib_sram import *
 
 # devices file
 fileName = "devices.xml"
@@ -257,6 +278,42 @@ def GenPriorityDecoder(inputs, out, num):
   print("end")
 
 def ReadDevicesXMLFile():
+    cfg = Config.active()
+    ret = []
+
+    cur_portnum = 0
+    for name in cfg.devices.keys():
+        dev : DeviceConfig = cfg.devices[name]
+        
+        base = dev.base
+        length = dev.length
+        noc2_in = dev.noc2in
+        virtual = dev.virtual
+        stream_accessible = dev.stream_accessible        
+        
+        if not virtual:
+            portnum = cur_portnum
+            cur_portnum += 1
+        else:
+            portnum = -1
+
+        dev_cfg = {
+            "name": name, 
+            "portnum": portnum, 
+            "base": base, 
+            "length": length, 
+            "noc2_in": noc2_in, 
+            "virtual": virtual, 
+            "stream_accessible":stream_accessible}
+        
+        if name == "chip":
+            ret.insert(0, dev_cfg)
+        else:
+            ret.append(dev_cfg)
+            
+    return ret
+
+def ReadDevicesXMLFile_sav():
   devicesInfo = []
   if DEVICES_XML_FILENAME == "":
     return devicesInfo

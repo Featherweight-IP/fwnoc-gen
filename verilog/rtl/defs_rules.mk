@@ -4,6 +4,10 @@ ifneq (1,$(RULES))
 
 ifeq (,$(findstring $(OPENPITON_IC_VERILOG_RTLDIR),$(MKDV_INCLUDED_DEFS)))
 MKDV_INCLUDED_DEFS += $(OPENPITON_IC_VERILOG_RTLDIR)
+MKDV_VL_DEFINES += PITON_NO_CHIP_BRIDGE
+#MKDV_VL_DEFINES += PITON_CLKS_CHIPSET
+#MKDV_VL_DEFINES += PITON_CHIPSET_CLKS_GEN
+
 MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/chipset
 MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/chipset/axi_sd_bridge/rtl
 MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/chipset/include
@@ -11,10 +15,14 @@ MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/chipset/noc_axi4_bridge/rtl
 MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/chipset/noc_sd_bridge/rtl
 MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/common/uart/rtl
 MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/include
+MKDV_VL_INCDIRS += $(OPENPITON_IC_VERILOG_RTLDIR)/support
 
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/*.v)
 #./chip/pll
-#./chip/pll/rtl
+
+# TODO:
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/pll/rtl/*.v)
+
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/chip_bridge/*.v)
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/chip_bridge/rtl/*.v)
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/*.v)
@@ -38,7 +46,10 @@ MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/dynamic_node
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/dynamic_node/sim/rtl/*.v)
 #./chip/tile/ariane
 #./chip/tile/fpu
-#./chip/tile/fpu/rtl
+
+# TODO:
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/fpu/rtl/*.v)
+
 #./chip/tile/pico
 #./chip/tile/pico/rtl
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/rtl/*.v)
@@ -57,33 +68,34 @@ MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/l2/rtl/sram_
 #./chip/tile/sparc/exu
 #./chip/tile/sparc/exu/bw_r_irf
 #./chip/tile/sparc/exu/bw_r_irf/bw_r_irf_register8
-#./chip/tile/sparc/exu/bw_r_irf/bw_r_irf_register8/rtl
-#./chip/tile/sparc/exu/bw_r_irf/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/exu/bw_r_irf/bw_r_irf_register8/rtl/*.v)
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/exu/bw_r_irf/rtl/*.v)
 #./chip/tile/sparc/exu/bw_r_irf/bw_r_irf_register16
-#./chip/tile/sparc/exu/bw_r_irf/bw_r_irf_register16/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/exu/bw_r_irf/bw_r_irf_register16/rtl/*.v)
 #./chip/tile/sparc/exu/bw_r_irf/common
-#./chip/tile/sparc/exu/bw_r_irf/common/rtl
-#./chip/tile/sparc/exu/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/exu/bw_r_irf/common/rtl/*.v)
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/exu/rtl/*.v)
 #./chip/tile/sparc/lsu
-#./chip/tile/sparc/lsu/rtl
-#./chip/tile/sparc/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/lsu/rtl/*.v)
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/rtl/*.v)
 #./chip/tile/sparc/tlu
-#./chip/tile/sparc/tlu/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/tlu/rtl/*.v)
 #./chip/tile/sparc/spu
-#./chip/tile/sparc/spu/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/spu/rtl/*.v)
 #./chip/tile/sparc/ffu
 #./chip/tile/sparc/ffu/synopsys
 #./chip/tile/sparc/ffu/synopsys/script
-#./chip/tile/sparc/ffu/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/ffu/rtl/*.v)
 #./chip/tile/sparc/ifu
-#./chip/tile/sparc/ifu/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/ifu/rtl/*.v)
 #./chip/tile/sparc/mul
-#./chip/tile/sparc/mul/rtl
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/mul/rtl/*.v)
 #./chip/tile/sparc/synopsys
 #./chip/tile/sparc/synopsys/script
 #./chip/tile/sparc/srams
-#./chip/tile/sparc/srams/rtl
-#./chip/tile/sparc/srams/rtl/sram_wrappers
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/srams/rtl/*.v)
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/tile/sparc/srams/rtl/sram_wrappers/*.v)
+
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/jtag/*.v)
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/jtag/rtl/*.v)
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/chip/rtl/*.v)
@@ -126,6 +138,8 @@ MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/common/uart/rtl/*.v)
 #./include
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/rtl/*.v)
 MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/*.v)
+
+MKDV_VL_SRCS += $(wildcard $(OPENPITON_IC_VERILOG_RTLDIR)/support/*.v)
 
 endif
 
