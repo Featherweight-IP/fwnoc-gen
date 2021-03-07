@@ -27,7 +27,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 //top level module for chip_send tests 
 
-//`timescale 1ns/1ps
+//// `timescale 1ns/1ps
 module chip_bridge(
     rst_n,
     chip_clk,

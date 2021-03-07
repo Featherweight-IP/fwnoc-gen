@@ -34,7 +34,7 @@
  * *******************************************************************/
 
 
-`timescale 1ns/1ps
+// `timescale 1ns/1ps
 
 module bridge_network_chooser_16 (
     rst,

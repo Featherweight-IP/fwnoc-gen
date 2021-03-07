@@ -40,7 +40,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 //==================================================================================================
 
-//`timescale 1 ns / 10 ps
+//// `timescale 1 ns / 10 ps
 `include "l15.h"
 `include "lsu.h"
 

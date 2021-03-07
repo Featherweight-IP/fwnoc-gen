@@ -36,7 +36,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 `include "piton_system.vh"
 
-`timescale 1ns/1ps
+// `timescale 1ns/1ps
 
 module chip_bridge_out (
     rst, 

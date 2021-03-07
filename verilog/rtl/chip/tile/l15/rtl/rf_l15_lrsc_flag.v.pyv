@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //==================================================================================================
 //rf_l15_lrsc_flag.v
 
-//`timescale 1 ns / 10 ps
+//// `timescale 1 ns / 10 ps
 //`default_nettype none
 
 

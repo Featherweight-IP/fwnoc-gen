@@ -83,7 +83,7 @@ module sd_wishbone_transaction_manager (
     reg [2:0]                 bcntr, next_bcntr;
 
     reg [`AXI_ADDR_WIDTH-1:0] addr,  next_addr;
-    reg [1:0]                 type,  next_type;
+    reg [1:0]                 curr_type,  next_type;
     reg                       succ,  next_succ;
     reg [`AXI_DATA_WIDTH-1:0] rword, next_rword;
 
@@ -98,7 +98,7 @@ module sd_wishbone_transaction_manager (
     // Reset States
     localparam RS_CLEAR        = 5'b00000; // Sets registers to default values after reset
     localparam RS_WAIT         = 5'b00001; // Waits a few cycles after reset for card to stabilize
-    localparam RS_W_TRANS_TYPE = 5'b00010; // Write a SD INIT op to the transaction type reg
+    localparam RS_W_TRANS_TYPE = 5'b00010; // Write a SD INIT op to the transaction curr_type reg
     localparam RS_W_TRANS_CTRL = 5'b00011; // Start the SD INIT transaction
     localparam RS_R_TRANS_STS  = 5'b00100; // Wait for the SD INIT transaction to complete
     localparam RS_R_TRANS_ERR  = 5'b00101; // Read in the error status register
@@ -118,7 +118,7 @@ module sd_wishbone_transaction_manager (
     localparam W_DATA_BYTES    = 5'b01011; // Copy 512 bytes from cache to TX queue (only for writes)
 
     // Start the Transaction
-    localparam W_TRANS_TYPE    = 5'b01100; // Write a SD BLOCK op to the transaction type reg
+    localparam W_TRANS_TYPE    = 5'b01100; // Write a SD BLOCK op to the transaction curr_type reg
     localparam W_TRANS_CTRL    = 5'b01101; // Start the SD BLOCK transaction
     localparam R_TRANS_STS     = 5'b01110; // Wait for the SD BLOCK transaction to complete
     localparam R_TRANS_ERR     = 5'b01111; // Read in the error status register
@@ -312,12 +312,12 @@ module sd_wishbone_transaction_manager (
             end
             R_TRANS_ERR:
             begin
-                if (ack_i && (type == `SD_WB_BLK_WR))
+                if (ack_i && (curr_type == `SD_WB_BLK_WR))
                 begin
                     next_after_state = DONE;
                     next_state       = WB_CHILL;
                 end
-                else if (ack_i && (type == `SD_WB_BLK_RD))
+                else if (ack_i && (curr_type == `SD_WB_BLK_RD))
                 begin
                     if (dat_i[`READ_ERR_SLOT] != `READ_NO_ERROR)
                     begin
@@ -408,7 +408,7 @@ module sd_wishbone_transaction_manager (
         next_bcntr = bcntr;
 
         next_addr  = addr;
-        next_type  = type;
+        next_type  = curr_type;
 
         next_succ  = succ;
 
@@ -532,7 +532,7 @@ module sd_wishbone_transaction_manager (
             W_TRANS_TYPE:
             begin
                 adr_o = `CTRL_STS_REG_BASE + `TRANS_TYPE_REG;
-                dat_o = (type == `SD_WB_BLK_WR) ? {6'b000000, `RW_WRITE_SD_BLOCK} : {6'b000000, `RW_READ_SD_BLOCK};
+                dat_o = (curr_type == `SD_WB_BLK_WR) ? {6'b000000, `RW_WRITE_SD_BLOCK} : {6'b000000, `RW_READ_SD_BLOCK};
                 stb_o = 1'b1;
                 we_o  = 1'b1;
             end
@@ -553,11 +553,11 @@ module sd_wishbone_transaction_manager (
                 adr_o = `CTRL_STS_REG_BASE + `TRANS_ERROR_REG;
                 stb_o = 1'b1;
 
-                if (ack_i && (type == `SD_WB_BLK_WR) && (dat_i[`WRITE_ERR_SLOT] != `WRITE_NO_ERROR))
+                if (ack_i && (curr_type == `SD_WB_BLK_WR) && (dat_i[`WRITE_ERR_SLOT] != `WRITE_NO_ERROR))
                 begin
                     next_succ = 0;
                 end
-                else if (ack_i && (type == `SD_WB_BLK_RD) && (dat_i[`READ_ERR_SLOT] != `READ_NO_ERROR))
+                else if (ack_i && (curr_type == `SD_WB_BLK_RD) && (dat_i[`READ_ERR_SLOT] != `READ_NO_ERROR))
                 begin
                     next_succ = 0;
                 end
@@ -599,7 +599,7 @@ module sd_wishbone_transaction_manager (
             bcntr <= 0;
             wcntr <= 0;
             addr  <= 0;
-            type  <= 0;
+            curr_type  <= 0;
             succ  <= 1;
             rword <= 0;
         end
@@ -607,7 +607,7 @@ module sd_wishbone_transaction_manager (
             bcntr <= next_bcntr;
             wcntr <= next_wcntr;
             addr  <= next_addr;
-            type  <= next_type;
+            curr_type  <= next_type;
             succ  <= next_succ;
             rword <= next_rword;
         end

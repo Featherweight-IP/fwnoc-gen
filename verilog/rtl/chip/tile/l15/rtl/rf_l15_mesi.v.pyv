@@ -41,7 +41,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //==================================================================================================
 //rf_l15_mesi.v
 
-//`timescale 1 ns / 10 ps
+//// `timescale 1 ns / 10 ps
 //`default_nettype none
 
 // 12/17 timing fix: move write to s3

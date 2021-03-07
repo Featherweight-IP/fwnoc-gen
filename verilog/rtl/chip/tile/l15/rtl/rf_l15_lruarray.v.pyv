@@ -46,7 +46,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   from pyhp import pyhplib
   from pyhp.pyhplib import *
 %>
-//`timescale 1 ns / 10 ps
+//// `timescale 1 ns / 10 ps
 //`default_nettype none
 module rf_l15_lruarray(
    input wire clk,

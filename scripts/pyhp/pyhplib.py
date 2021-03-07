@@ -44,6 +44,7 @@ X_TILES = cfg.tiles.x
 Y_TILES = cfg.tiles.y
 NUM_TILES = cfg.tiles.num
 NETWORK_CONFIG = "2dmesh_config"
+#NETWORK_CONFIG = "xbar_config"
 
 # X_TILES = int(os.environ.get('PTON_X_TILES', '-1'))
 # #print "//x_tiles:", num_tiles

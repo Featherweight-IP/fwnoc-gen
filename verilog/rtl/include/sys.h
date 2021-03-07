@@ -32,7 +32,7 @@
 //
 // Setting the time scale
 // If the timescale changes, JP_TIMESCALE may also have to change.
-`timescale	1ps/1ps
+// // `timescale	1ps/1ps
 `default_nettype wire
 
 //
@@ -255,7 +255,7 @@
 // `define      SYS_J_CLK          `SYS.j_clk
 // `define      SYS_P_CLK          `SYS.p_clk
 // `define      SYS_G_CLK          `SYS.g_clk
-// `define      JP_TIMESCALE       `timescale 1 ps / 1 ps
+// `define      JP_TIMESCALE       // `timescale 1 ps / 1 ps
 // `define      PCI_CLK_PERIOD     15152                  //  66 MHz
 // `define      UPA_RD_CLK_PERIOD  6666                   // 150 MHz
 // `define      UPA_REF_CLK_PERIOD 7576                   // 132 MHz

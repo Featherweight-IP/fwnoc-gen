@@ -1,0 +1,42 @@
+
+bfm_driven:
+    - interconnect:
+        - cache:
+            - l15:
+               # Assume l15 is a unified cache
+                - size: 8192
+                - associativity: 4
+                # Unclear whether line sizes can really be reconfigured
+                - line-size: 16
+            - l2:
+                - size: 65536
+                - associativity: 4
+                - line-size: 64
+        - tiles:
+            - x: 2
+            - y: 2
+            - num: 4
+            # xbar | 2dmesh
+            - network-config: 2dmesh
+            # Specifies a single implementation
+            - module: my_module
+            
+    # This specifies information formerly included in 'devices.xml'
+    - devices:
+        - chip:
+            - noc2in: True
+        - mem:
+            - base: 0x00000000
+            - length: 0x40000000
+            
+        - iob:
+            - base:   0x9f00000000
+            - length: 0x0000000010
+            - noc2in: True
+            
+        - uart:
+            - base:   0xff0c2c000
+            - length: 0x0000d4000
+            - noc2in: True
+    
+

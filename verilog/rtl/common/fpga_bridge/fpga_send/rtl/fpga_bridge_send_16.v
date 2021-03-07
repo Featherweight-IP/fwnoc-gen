@@ -34,7 +34,7 @@
  *
  *******************************************************************/
 
-`timescale 1ns/1ps
+// `timescale 1ns/1ps
 
 module fpga_bridge_send_16 (
     rst, 

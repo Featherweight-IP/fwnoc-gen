@@ -34,7 +34,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 
 
-`timescale 1ns/1ps
+// `timescale 1ns/1ps
 
 module fpga_bridge_rcv_32 (
     rst, 

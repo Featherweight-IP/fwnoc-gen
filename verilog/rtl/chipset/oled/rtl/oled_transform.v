@@ -156,11 +156,26 @@ always @(posedge sys_clk) begin
     char_map_table[57] <= 64'h1E33333E30180E00;   // 9
     char_map_table[58] <= 64'h000C0C00000C0Cx00;   // :
     char_map_table[59] <= 64'h000C0C00000C0Cx06;   // //
+`ifdef VERILATOR
+  	// TODO: This doesn't look good
+    char_map_table[60] <= 68'h180C0603060C18x00;   // <
+`else
     char_map_table[60] <= 64'h180C0603060C18x00;   // <
+`endif
     char_map_table[61] <= 64'h00003F00003F00x00;   // =
     char_map_table[62] <= 64'h060C1830180C06x00;   // >
+`ifdef VERILATOR
+  	// TODO: This doesn't look good
+    char_map_table[63] <= 68'h1E3330180C000Cx00;   // ?
+`else
     char_map_table[63] <= 64'h1E3330180C000Cx00;   // ?
+`endif
+`ifdef VERILATOR
+  	// TODO: This doesn't look good
+    char_map_table[64] <= 68'h3E637B7B7B031Ex00;   // @
+`else
     char_map_table[64] <= 64'h3E637B7B7B031Ex00;   // @
+`endif
     char_map_table[65] <= 64'h0C1E33333F333300;  // A
     char_map_table[66] <= 64'h3F66663E66663F00;  // B
     char_map_table[67] <= 64'h3C66030303663C00;  // C

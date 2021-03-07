@@ -34,9 +34,9 @@
  //
 
 `ifdef IBM_VLOG_2ps
- `timescale 1 ns / 1 ps
+ // `timescale 1 ns / 1 ps
 `else
- `timescale 1 ns / 10 ps
+ // `timescale 1 ns / 10 ps
 `endif
 
  module pll_top ( 
