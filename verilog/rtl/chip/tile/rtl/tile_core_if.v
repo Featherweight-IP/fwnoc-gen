@@ -91,22 +91,51 @@ module tile_core_if #(
 //		);
 	
 	wire we;
+	reg rst_n_1 = 1;
+	reg rst_n_2 = 1;
+	reg rst_n_3 = 1;
+	reg rst_n_4 = 1;
+	wire reset;
+	
+	always @(posedge clk) begin
+		rst_n_4 <= rst_n;
+		rst_n_3 <= rst_n_4;
+		rst_n_2 <= rst_n_3;
+		rst_n_1 <= rst_n_2;
+	end
+	
+	assign reset = (rst_n_1 === 0 || rst_n === 0);
 	
 	initial begin
 		$display("tile_core: %m");
 	end
+
+	// The 'pico' bridges need valid to be dropped
+	// before being raised again
+	reg ack_r = 0;
+	
+	always @(posedge clk) begin
+		if (reset) begin
+			ack_r <= 0;
+		end else begin
+			ack_r <= (pico_transducer_mem_valid && transducer_pico_mem_ready);
+		end
+	end
+
+	wire bfm_valid;
+	assign pico_transducer_mem_valid = (bfm_valid & ~ack_r);
 
 	rv_addr_line_en_initiator_bfm #(
 			.ADR_WIDTH(32),
 			.DAT_WIDTH(32)
 			) u_bfm (
 			.clock(							clk),
-			.reset(							~rst_n),
+			.reset(							reset),
 			.adr(                           pico_transducer_mem_addr),
 			.dat_w(                         pico_transducer_mem_wdata),
 			.dat_r(                         transducer_pico_mem_rdata),
 			.we(                            we),
-			.valid(							pico_transducer_mem_valid),
+			.valid(							bfm_valid),
 			.ready(                         transducer_pico_mem_ready)
 			);
 	

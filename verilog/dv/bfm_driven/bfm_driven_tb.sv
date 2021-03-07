@@ -2,7 +2,7 @@
  * bfm_driven_tb.sv
  ****************************************************************************/
 `ifdef NEED_TIMESCALE
-// `timescale 1ns/1ns
+`timescale 1ns/1ns
 `endif
 
 `include "l2.h"
@@ -53,22 +53,22 @@ module bfm_driven_tb(input clock);
 	
 	wire                                       processor_offchip_noc1_valid;
 	wire [`NOC_DATA_WIDTH-1:0]                 processor_offchip_noc1_data;
-	wire                                       processor_offchip_noc1_yummy = 0;
+	wire                                       processor_offchip_noc1_yummy;
 	wire                                       processor_offchip_noc2_valid;
 	wire [`NOC_DATA_WIDTH-1:0]                 processor_offchip_noc2_data;
-	wire                                       processor_offchip_noc2_yummy = 0;
+	wire                                       processor_offchip_noc2_yummy;
 	wire                                       processor_offchip_noc3_valid;
 	wire [`NOC_DATA_WIDTH-1:0]                 processor_offchip_noc3_data;
-	wire                                       processor_offchip_noc3_yummy = 0;
+	wire                                       processor_offchip_noc3_yummy;
 
-	wire                                       offchip_processor_noc1_valid = 1'b0;
-	wire  [`NOC_DATA_WIDTH-1:0]                offchip_processor_noc1_data = {`NOC_DATA_WIDTH{1'b0}};
+	wire                                       offchip_processor_noc1_valid;
+	wire  [`NOC_DATA_WIDTH-1:0]                offchip_processor_noc1_data;
 	wire                                       offchip_processor_noc1_yummy;
-	wire                                       offchip_processor_noc2_valid = 1'b0;
-	wire  [`NOC_DATA_WIDTH-1:0]                offchip_processor_noc2_data = {`NOC_DATA_WIDTH{1'b0}};
+	wire                                       offchip_processor_noc2_valid;
+	wire  [`NOC_DATA_WIDTH-1:0]                offchip_processor_noc2_data;
 	wire                                       offchip_processor_noc2_yummy;
-	wire                                       offchip_processor_noc3_valid = 1'b0;
-	wire  [`NOC_DATA_WIDTH-1:0]                offchip_processor_noc3_data = {`NOC_DATA_WIDTH{1'b0}};
+	wire                                       offchip_processor_noc3_valid;
+	wire  [`NOC_DATA_WIDTH-1:0]                offchip_processor_noc3_data;
 	wire                                       offchip_processor_noc3_yummy;	
 
 	chip u_dut(
