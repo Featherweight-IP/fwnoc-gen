@@ -54,7 +54,7 @@ def process_dir(src_path, dst_path):
             if ext == ".v" or ext == ".h" or ext == ".vh" or ext == ".mk":
                 if VERBOSE:
                     print("Note: copy " + srcfile)
-                shutil.copy(srcfile, dstfile)
+#                shutil.copy(srcfile, dstfile)
             elif ext == ".pyv":
                 dstfile = dstfile[:-4]
                 if VERBOSE > 1:

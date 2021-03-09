@@ -5,7 +5,7 @@ TEST_DIR := $(dir $(MKDV_MK))
 TOP_MODULE=bfm_driven_tb
 MKDV_PLUGINS += pybfms cocotb
 
-PYBFMS_MODULES += rv_bfms
+PYBFMS_MODULES += rv_bfms fwnoc_bfms
 
 MKDV_COCOTB_MODULE = openpiton_tests.bfm_driven
 

@@ -8,8 +8,12 @@ ifneq (1,$(RULES))
 
 MKDV_PYTHONPATH += $(OPENPITON_IC_DV_COMMONDIR)/python
 
+include $(OPENPITON_IC_DIR)/verilog/rtl/defs_rules.mk
+include $(OPENPITON_IC_DIR)/verilog/dbg/defs_rules.mk
 include $(DV_MK)
 else # Rules
 
 include $(DV_MK)
+include $(OPENPITON_IC_DIR)/verilog/dbg/defs_rules.mk
+include $(OPENPITON_IC_DIR)/verilog/rtl/defs_rules.mk
 endif

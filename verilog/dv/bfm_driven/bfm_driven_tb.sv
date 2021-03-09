@@ -113,7 +113,7 @@ module bfm_driven_tb(input clock);
 		.offchip_processor_noc3_yummy(             offchip_processor_noc3_yummy)
 		);
 
-	noc2rv_bridge u_bridge(
+	fwnoc_memtarget_bfm u_mem(
 			.clock(clock),
 			.reset(reset),
 		

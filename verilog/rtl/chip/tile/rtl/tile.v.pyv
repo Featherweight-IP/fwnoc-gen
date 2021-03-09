@@ -901,6 +901,20 @@ NIB_SIZE = pow(2, NIB_SIZE_LOG2)
         .rtap_srams_bist_command (rtap_srams_bist_command),
         .rtap_srams_bist_data (rtap_srams_bist_data)
     );
+    
+    l2_dbg l2_dbg(
+    	.clk(clk_gated),
+    	.rst_n(rst_n_f),
+        .noc1_valid_in(buffer_processor_valid_noc1),
+        .noc3_valid_in(buffer_processor_valid_noc3),
+        .noc1_data_in(buffer_processor_data_noc1),
+        .noc3_data_in(buffer_processor_data_noc3),
+        .noc2_ready_out(router_processor_ready_noc2),
+
+        .noc1_ready_in(processor_router_ready_noc1),
+        .noc3_ready_in(processor_router_ready_noc3),
+        .noc2_valid_out(processor_router_valid_noc2),
+        .noc2_data_out(processor_router_data_noc2));
 
     ////////////////////////////////////
     // Uncore Configuration Registers //
