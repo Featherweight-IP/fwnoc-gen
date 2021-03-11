@@ -21,21 +21,23 @@ async def test(dut):
     
 #    await cocotb.triggers.Timer(100, "us")
 
+    # Use uncached writes to directly write to memory
     for i in range(64):
-        await bfms[0].write(0x80001000 + 4*i, 0x55eeaaff+i)
+        print("data: (w) 0x%08x: 0x%08x" % (0x80001000+4*i, 0x55eeaaff+i))
+#        await bfms[0].write(0x80001000 + 4*i, 0x55eeaaff+i)
+        await bfms[0].write(0x80001000 + 4*i, i|(i<<8)|(i<<16)|(i<<24))
 
     for j in range(100):    
         for i in range(64):
-            print("--> read (" + str(i) + ")")
             #        await bfms[0].write(0x80000000 + 4*i, 0x55eeaaff)
 #            await bfms[0].read(0x80001000 + 4*i)
 #            await bfms[0].write(0x80002000 + 4*i, 0x55eeaaff)
-            await bfms[0].read(0x00001000 + 4*i)
-            await bfms[1].read(0x00001000 + 4*i)
-            await bfms[2].read(0x00001000 + 4*i)
-            await bfms[3].read(0x00001000 + 4*i)
+#            await bfms[0].read(0x00001000 + 4*i)
+            data = await bfms[1].read(0x00001000 + 4*i)
+            print("data: (r) 0x%08x: 0x%08x" % (0x80001000+4*i,data))
+#            await bfms[2].read(0x00001000 + 4*i)
+#            await bfms[3].read(0x00001000 + 4*i)
 #            await bfms[0].write(0x00001000 + 4*i, 0x55eeaaff)
 #            await bfms[0].read(0x00001000 + 4*i)
             #        await cocotb.triggers.Timer(1, "us")
-            print("<-- read (" + str(i) + ")")
         

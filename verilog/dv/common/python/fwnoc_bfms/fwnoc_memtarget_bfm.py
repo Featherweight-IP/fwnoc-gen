@@ -14,11 +14,11 @@ from fwnoc_bfms.mem_model import MemModel
 class FwNocMemTargetBfm(object):
     
     def __init__(self):
-        self.mem = MemModel(32, 64, False)
+        self.mem = MemModel(32, 64, True)
   
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint64_t)
     def _write8(self, addr, data):
-        print("_write8: 0x%08x 0x%08x" % (addr, data))
+        print("memtarget::write8: 0x%08x 0x%08x" % (addr, data))
         addr &= 0x3FFFFFFFF
         self.mem.write_word(addr, 
                             (data & 0xFF)
@@ -34,7 +34,7 @@ class FwNocMemTargetBfm(object):
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint64_t)
     def _write16(self, addr, data):
         addr &= 0x3FFFFFFF
-        print("_write16: 0x%08x 0x%08x" % (addr, data))
+        print("memtarget::write16: 0x%08x 0x%08x" % (addr, data))
         self.mem.write_word(addr, 
                             (data & 0xFFFF)
                             | ((data & 0xFFFF) << 16)
@@ -45,7 +45,7 @@ class FwNocMemTargetBfm(object):
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint64_t)
     def _write32(self, addr, data):
         addr &= 0x3FFFFFFF
-        print("_write32: 0x%08x 0x%08x" % (addr, data))
+        print("memtarget::write32: 0x%08x 0x%08x" % (addr, data))
         self.mem.write_word(addr, 
                             (data & 0xFFFFFFFF) | ((data & 0xFFFFFFFF) << 32), 
                             0xF0 >> (addr & 0x4))
@@ -53,7 +53,7 @@ class FwNocMemTargetBfm(object):
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint64_t)
     def _write64(self, addr, data):
         addr &= 0x3FFFFFFF
-        print("_write: 0x%08x 0x%08x" % (addr, data))
+        print("memtarget::write: 0x%08x 0x%08x" % (addr, data))
         self.mem.write_word(addr, data, 0xFF)
     
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint8_t, pybfms.uint8_t)
@@ -84,7 +84,7 @@ class FwNocMemTargetBfm(object):
             word = (
                 (data << 32)
                 | data)
-        print("_read_req: 0x%08x 0x%016x" % (addr, word))
+        print("memtarget::read_req: 0x%08x 0x%016x" % (addr, word))
         
         self._read_ack(word, idx)
     

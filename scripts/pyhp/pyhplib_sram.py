@@ -235,10 +235,13 @@ end
    begin
       if (CE)
       begin
-         if (RDWEN == 1'b0)
+         if (RDWEN == 1'b0) begin
+            //$display("%0t CW: 'h%04x = 'h%016x", $time, A, (DIN & BW) | (cache[A] & ~BW));
             cache[A] <= (DIN & BW) | (cache[A] & ~BW);
-         else
+         end else begin
+            //$display("%0t CR: 'h%04x = 'h%016x", $time, A, cache[A]);
             dout_f <= cache[A];
+         end
       end
    end
 
@@ -292,10 +295,13 @@ end
    begin
       if (CE)
       begin
-         if (RDWEN == 1'b0)
+         if (RDWEN == 1'b0) begin
+            //$display("%0t CW: 'h%04x = 'h%016x", $time, A, (DIN & BW) | (cache[A] & ~BW));
             cache[A] <= (DIN & BW) | (cache[A] & ~BW);
-         else
+         end else begin
+            //$display("%0t CR: 'h%04x = 'h%016x", $time, A, cache[A]);
             dout_f <= cache[A];
+         end
       end
    end
 '''

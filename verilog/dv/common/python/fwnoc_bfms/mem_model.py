@@ -39,11 +39,11 @@ class MemModel(object):
         data = 0
         for i in range(int(self.data_width/8)):
             if self.little_endian:
-                data <<= 8
-                data |= page.mem[pageaddr]
-            else:
                 data >>= 8
                 data |= (page.mem[pageaddr] << (self.data_width-8))
+            else:
+                data <<= 8
+                data |= page.mem[pageaddr]
                 
             pageaddr += 1
             
