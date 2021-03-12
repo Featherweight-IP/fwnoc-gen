@@ -112,6 +112,35 @@ module bfm_driven_tb(input clock);
 		.offchip_processor_noc3_data(              offchip_processor_noc3_data),
 		.offchip_processor_noc3_yummy(             offchip_processor_noc3_yummy)
 		);
+	
+	fwnoc_l2_dbg_bfm u_dbg_procoff (
+			.clk(clock),
+			.rst_n(~reset),
+			.noc1_valid_in(processor_offchip_noc1_valid),
+			.noc1_data_in(processor_offchip_noc1_data),
+			.noc1_ready_in(1'b1),
+			.noc2_valid_out(processor_offchip_noc2_valid),
+			.noc2_data_out(processor_offchip_noc2_data),
+			.noc2_ready_out(1'b1),
+			.noc3_valid_in(processor_offchip_noc3_valid),
+			.noc3_data_in(processor_offchip_noc3_data),
+			.noc3_ready_in(1'b1)
+		);
+	
+	fwnoc_l2_dbg_bfm u_dbg_offproc (
+			.clk(clock),
+			.rst_n(~reset),
+			.noc1_valid_in(offchip_processor_noc1_valid),
+			.noc1_data_in(offchip_processor_noc1_data),
+			.noc1_ready_in(1'b1),
+			.noc2_valid_out(offchip_processor_noc2_valid),
+			.noc2_data_out(offchip_processor_noc2_data),
+			.noc2_ready_out(1'b1),
+			.noc3_valid_in(offchip_processor_noc3_valid),
+			.noc3_data_in(offchip_processor_noc3_data),
+			.noc3_ready_in(1'b1)
+		);
+	
 
 	fwnoc_memtarget_bfm u_mem(
 			.clock(clock),

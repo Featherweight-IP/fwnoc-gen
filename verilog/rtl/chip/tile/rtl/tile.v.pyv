@@ -286,6 +286,63 @@ print(s)
     reg									rst_n_pp;
     reg									rst_n_ppp;
     
+    // Buffer->Processor debug
+    fwnoc_l2_dbg_bfm u_dbg_bufproc (
+    .clk(clk),
+    .rst_n(rst_n),
+    .noc1_valid_in(buffer_processor_valid_noc1),
+    .noc1_data_in(buffer_processor_data_noc1),
+    .noc1_ready_in(1'b1),
+    .noc2_valid_out(buffer_processor_valid_noc2),
+    .noc2_data_out(buffer_processor_data_noc2),
+    .noc2_ready_out(1'b1),
+    .noc3_valid_in(buffer_processor_valid_noc3),
+    .noc3_data_in(buffer_processor_data_noc3),
+    .noc3_ready_in(1'b1)
+    );
+    
+    fwnoc_l2_dbg_bfm u_dbg_bufroute (
+    .clk(clk),
+    .rst_n(rst_n),
+    .noc1_valid_in(buffer_router_valid_noc1),
+    .noc1_data_in(buffer_router_data_noc1),
+    .noc1_ready_in(1'b1),
+    .noc2_valid_out(buffer_router_valid_noc2),
+    .noc2_data_out(buffer_router_data_noc2),
+    .noc2_ready_out(1'b1),
+    .noc3_valid_in(buffer_router_valid_noc3),
+    .noc3_data_in(buffer_router_data_noc3),
+    .noc3_ready_in(1'b1)
+    );
+    
+    fwnoc_l2_dbg_bfm u_dbg_procroute (
+    .clk(clk),
+    .rst_n(rst_n),
+    .noc1_valid_in(processor_router_valid_noc1),
+    .noc1_data_in(processor_router_data_noc1),
+    .noc1_ready_in(1'b1),
+    .noc2_valid_out(processor_router_valid_noc2),
+    .noc2_data_out(processor_router_data_noc2),
+    .noc2_ready_out(1'b1),
+    .noc3_valid_in(processor_router_valid_noc3),
+    .noc3_data_in(processor_router_data_noc3),
+    .noc3_ready_in(1'b1)
+    );
+
+    fwnoc_l2_dbg_bfm u_dbg_routebuf (
+    .clk(clk),
+    .rst_n(rst_n),
+    .noc1_valid_in(router_buffer_data_val_noc1),
+    .noc1_data_in(router_buffer_data_noc1),
+    .noc1_ready_in(1'b1),
+    .noc2_valid_out(router_buffer_data_val_noc2),
+    .noc2_data_out(router_buffer_data_noc2),
+    .noc2_ready_out(1'b1),
+    .noc3_valid_in(router_buffer_data_val_noc3),
+    .noc3_data_in(router_buffer_data_noc3),
+    .noc3_ready_in(1'b1)
+    );
+        
     assign spc_grst_l = rst_n_ppp;
     
     always @(posedge clk) begin

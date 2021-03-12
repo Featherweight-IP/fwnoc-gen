@@ -4,6 +4,7 @@ TEST_DIR := $(dir $(MKDV_MK))
 
 TOP_MODULE=bfm_driven_tb
 MKDV_PLUGINS += pybfms cocotb
+MKDV_TIMEOUT ?= 10ms
 
 PYBFMS_MODULES += rv_bfms fwnoc_bfms
 

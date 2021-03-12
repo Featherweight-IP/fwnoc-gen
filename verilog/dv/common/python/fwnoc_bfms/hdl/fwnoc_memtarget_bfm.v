@@ -411,7 +411,7 @@ module fwnoc_memtarget_bfm(
 										(buf_in_mem_f[3] >> (16*msg_addr[2:1])));
 								end
 								`MSG_DATA_SIZE_4B: begin
-									_write32(
+									write32_w(
 										{{(`MEM_ADDR_WIDTH-`PHY_ADDR_WIDTH){1'b0}}, msg_addr[`L2_TAG], msg_addr[`L2_TAG_INDEX],msg_addr[5:2], 2'b0},
 										(buf_in_mem_f[3] >> (32*msg_addr[2])));
 								end
@@ -586,6 +586,12 @@ module fwnoc_memtarget_bfm(
 		if (buf_out_rd_ptr_f < 9)
 			b2c_data_noc3 = buf_out_mem_f[buf_out_rd_ptr_f];
 	end
+	
+	task write32_w(input reg[63:0] addr, input reg[63:0] data);
+	begin
+		_write32(addr, data);
+	end
+	endtask
 
 	task init;
 		$display("%m: init");
@@ -593,7 +599,6 @@ module fwnoc_memtarget_bfm(
 	
 	task _read_ack(input reg[63:0] data, input reg[7:0] idx);
 	begin
-		$display("_read_ack 'h%08h 'h%02h", data, idx);
 		msg_send_data[idx] = data;	
 	end
 	endtask
