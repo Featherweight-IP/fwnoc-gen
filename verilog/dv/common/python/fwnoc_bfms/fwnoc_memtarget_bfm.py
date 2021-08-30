@@ -15,6 +15,7 @@ class FwNocMemTargetBfm(object):
     
     def __init__(self):
         self.mem = MemModel(32, 64, True)
+        self.count = 0x01010101010101
   
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint64_t)
     def _write8(self, addr, data):
@@ -59,7 +60,9 @@ class FwNocMemTargetBfm(object):
     @pybfms.export_task(pybfms.uint64_t, pybfms.uint8_t, pybfms.uint8_t)
     def _read_req(self, addr, sz, idx):
         addr &= 0x3FFFFFFF
-        word = self.mem.read_word(addr)
+#        word = self.mem.read_word(addr)
+        word = self.count
+        self.count += 1
 
         if sz == 1:
             data = ((word >> 8*(addr & 0x7)) & 0xFF)

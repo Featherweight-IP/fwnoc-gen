@@ -1,0 +1,41 @@
+package:
+    name: openpiton-ic
+    version: None
+    deps:
+        - name: fwprotocol-defs
+          url: https://git@github.com:/Featherweight-IP/fwprotocol-defs.git
+          type: raw
+        - name: cocotb
+          type: python
+          src: pypi
+        - name: pyyaml
+          type: python
+          src: pypi
+        - name: pybfms
+          url: ssh://git@github.com/pybfms/pybfms.git
+          type: python
+        - name: pybfms_generic_sram
+          url: ssh://git@github.com/pybfms/pybfms_generic_sram.git
+          type: python
+        - name: pybfms_gpio
+          url: ssh://git@github.com/pybfms/pybfms_gpio.git
+          type: python
+        - name: pybfms_mem_core
+          url: ssh://git@github.com/pybfms/pybfms_mem_core.git
+          type: python
+        - name: pybfms-core-debug-common
+          url: ssh://git@github.com/pybfms/pybfms-core-debug-common.git
+          type: python
+        - name: pybfms_riscv_debug
+          url: ssh://git@github.com/pybfms/pybfms_riscv_debug.git
+          type: python
+        - name: pybfms_rv
+          url: ssh://git@github.com/pybfms/pybfms_rv.git
+          type: python
+        - name: mkdv
+          url: ssh://git@github.com/fvutils/mkdv.git
+          type: python
+    dev-deps:
+        - name: fwprotocol-defs
+          url: https://git@github.com:/Featherweight-IP/fwprotocol-defs.git
+          type: raw

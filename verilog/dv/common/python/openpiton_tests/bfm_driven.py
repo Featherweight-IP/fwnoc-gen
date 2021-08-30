@@ -47,14 +47,18 @@ async def ensure_shared(bfm1, bfm2, cacheset):
     tag = random.randrange(0x0000,0xFFFF)
     
     # First, ensure is exclusive
+    print("--> [%s] Read(4)" % bfm1.bfm_info.inst_name)
     for i in range(4):
         await bfm1.read(
             (tag+i << 14)
             | (cacheset << 6))
+    print("<-- [%s] Read(4)" % bfm1.bfm_info.inst_name)
         
+    print("--> [%s] Read(1)" % bfm2.bfm_info.inst_name)
     await bfm2.read(
         (tag << 14)
         | (cacheset << 6))
+    print("<-- [%s] Read(1)" % bfm2.bfm_info.inst_name)
 
 @cocotb.test()
 async def test(dut):
@@ -94,24 +98,25 @@ async def test(dut):
 
     for i in range(1000):
         scenario = random.randrange(0,255) % 3
+#        scenario = 2
         cacheset = random.randrange(0,255)
         
         if scenario == 0: # make-exclusive
-            bfm_id = random.randrange(0,3)
+            bfm_id = random.randrange(1,3)
             print("--> Scenario: Make Exclusive " + hex(cacheset) + " bfm " + str(bfm_id))
             await ensure_exclusive(bfms[bfm_id], cacheset)
             print("<-- Scenario: Make Exclusive " + hex(cacheset) + " bfm " + str(bfm_id))
         elif scenario == 1: # ensure_modified
-            bfm_id = random.randrange(0,3)
+            bfm_id = random.randrange(1,3)
             print("--> Scenario: Make Modified " + hex(cacheset) + " bfm " + str(bfm_id))
             await ensure_modified(bfms[bfm_id], cacheset)
             print("<-- Scenario: Make Modified " + hex(cacheset) + " bfm " + str(bfm_id))
         elif scenario == 2: # ensure_shared
-            bfm1_id = random.randrange(0,3)
-            bfm2_id = random.randrange(0,3)
+            bfm1_id = random.randrange(1,3)
+            bfm2_id = random.randrange(1,3)
             
             while bfm1_id == bfm2_id:
-                bfm2_id = random.randrange(0,3)
+                bfm2_id = random.randrange(1,3)
                 
             print("--> Scenario: Make Shared " + hex(cacheset) + " bfm " + str(bfm1_id) + " bfm " + str(bfm2_id))
             await ensure_shared(bfms[bfm1_id], bfms[bfm2_id], cacheset)

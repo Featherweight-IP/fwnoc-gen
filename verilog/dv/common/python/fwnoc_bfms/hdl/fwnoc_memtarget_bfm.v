@@ -44,8 +44,8 @@ module fwnoc_memtarget_bfm(
 	
 	// These are b->c controls, letting chip
 	// know whether we have valid data to pass
-	wire		b2c_val_noc1 = 1'b0;
-	wire		b2c_val_noc2 = 1'b0;
+	wire		b2c_val_noc1;
+	wire		b2c_val_noc2;
 	reg			b2c_val_noc3;
 	wire		b2c_rdy_noc1;
 	wire		b2c_rdy_noc2;
